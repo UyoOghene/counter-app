@@ -1,0 +1,28 @@
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+
+}
+
+.box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    width: 50px;
+}
+
+#like-pic{
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+#like-span{
+    color: rgb(25, 25, 227);
+    font-weight: bold;
+}
