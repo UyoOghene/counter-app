@@ -331,7 +331,7 @@ form.active {
     height: 30px;
     width: 80px;
     text-align: center;
-    
+
     border: none;
     font: 15px solid black;
 
@@ -376,4 +376,117 @@ form.active {
     border-radius: 10px;
     border: 2px solid #cd65f6;
     gap: 10px;
+}
+
+/* Base Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+}
+
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #333;
+    width: 100%;
+    max-width: 400px;
+}
+
+/* Adjustments for tablets */
+@media (max-width: 768px) {
+    .login-container,
+    .container,
+    .like-box {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .login-container input,
+    #googleBtn,
+    #login,
+    #signup-btn {
+        font-size: 14px;
+    }
+
+    #logout-btn {
+        width: 100%;
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    #like-pic {
+        width: 40px;
+        height: 40px;
+    }
+
+    #like-span {
+        font-size: 14px;
+    }
+
+    h2 {
+        font-size: 18px;
+    }
+
+    #title {
+        font-size: 18px;
+    }
+}
+
+/* Adjustments for mobile devices */
+@media (max-width: 480px) {
+    .main-container {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .login-container,
+    .container,
+    .like-box {
+        width: 100%;
+        padding: 10px;
+        box-shadow: none;
+    }
+
+    .login-container input,
+    #googleBtn,
+    #login,
+    #signup-btn {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    #logout-btn {
+        width: 100%;
+        padding: 8px;
+        font-size: 12px;
+    }
+
+    #like-pic {
+        width: 30px;
+        height: 30px;
+    }
+
+    #like-span {
+        font-size: 12px;
+    }
+
+    h2 {
+        font-size: 16px;
+    }
+
+    #title {
+        font-size: 16px;
+    }
+
+    #user-box {
+        position: static;
+        margin-bottom: 20px;
+    }
 }
