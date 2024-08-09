@@ -62,6 +62,7 @@ const likeTxt = document.querySelector('#like-Txt');
 const currentLikeSpan = document.querySelector('#like-span');
 
 let score = 0;
+
 const addLike = (e) => {
     const user = auth.currentUser;
     if (user) {
@@ -93,6 +94,37 @@ const addLike = (e) => {
 
 likePic.addEventListener('click', addLike);
 
+signupBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    form.style.display = 'none';
+    signUpform.style.display = 'flex';
+    titleh2.textContent = 'Sign UP';
+});
+
+signUpSubmit.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (email.value === '' || firstname.value === '' || signUpassword.value === '' || confirmpassword.value === '') {
+        alert('Please fill up all the fields');
+    } else if (signUpassword.value !== confirmpassword.value) {
+        alert('Passwords do not match');
+        confirmpassword.value = '';
+        signUpassword.value = '';
+    } else {
+        createUserWithEmailAndPassword(auth, email.value, signUpassword.value)
+            .then((userCredential) => {
+                const user = userCredential.user;
+                console.log('User signed up:', user);
+                form.style.display = 'flex';
+                signUpform.style.display = 'none';
+                titleh2.textContent = 'Log In';
+            })
+            .catch((error) => {
+                console.error('Sign up error', error.code, error.message);
+            });
+    }
+});
+
+
 const onGoogleLogin = () => {
     const user = auth.currentUser;
 
@@ -117,7 +149,8 @@ const onGoogleLogin = () => {
             } else {
                 likeTxt.innerHTML = `<span id="like-span">${score}</span> like`;
             }
-        }).catch((error) => {
+        })
+        .catch((error) => {
             console.error("Error getting user likes:", error);
         });
     } else {
@@ -209,31 +242,53 @@ document.querySelector('#login').addEventListener('click', (e) => {
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
 
+
     signInWithEmailAndPassword(auth, username, password)
         .then((userCredential) => {
             const user = userCredential.user;
+            const userId = user.uid;
+            const userLikesRef = ref(database, `likes/${userId}`);
+        
             console.log('User signed in:', user);
             loginContainer.style.display = 'none';
             container.style.display = 'flex';
-            dropbtn.removeChild(picturebox);
-            dropbtn.appendChild(namebox);
             namebox.textContent = user.email;
             namebox.style.display = 'flex';
             imgbox.style.display = 'none';
-            applyThemePreference(user.uid);
+            get(userLikesRef).then((snapshot) => {
+                if (snapshot.exists()) {
+                    score = snapshot.val().count + 1;
+                } else {
+                    score = 1;
+                }
+                currentLikeSpan.textContent = score;
+        
+    
+                set(userLikesRef, { count: score });
+    
+                if (score !== 1) {
+                    likeTxt.innerHTML = `<span id="like-span">${score}</span> likes`;
+                } else {
+                    likeTxt.innerHTML = `<span id="like-span">${score}</span> like`;
+                }
+            })
+            .catch((error) => {
+                console.error("Error getting user likes:", error);
+            });
+            
         })
         .catch((error) => {
             console.error('Sign in error', error.code, error.message);
         });
 });
 
-// logoutBtn.addEventListener('click', () => {
-//     signOut(auth).then(() => {
-//         localStorage.removeItem('email');
-//         localStorage.removeItem('username');
-//         localStorage.removeItem('userStore');
-//         window.location.href = './index.html';
-//     }).catch((error) => {
-//         console.error('Sign out error', error);
-//     });
-// });
+logoutBtn.addEventListener('click', () => {
+    signOut(auth).then(() => {
+        localStorage.removeItem('email');
+        localStorage.removeItem('username');
+        localStorage.removeItem('userStore');
+        window.location.href = './index.html';
+    }).catch((error) => {
+        console.error('Sign out error', error);
+    });
+});
