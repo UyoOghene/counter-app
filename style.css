@@ -13,14 +13,14 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 250px;
+    /* height: 250px;
     width: 250px;
     padding: 5px;
     background-color: #ffffff;
     padding: 30px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
-    border: 2px solid #f6d365;
+    border: 2px solid #f6d365; */
     /* background: linear-gradient(145deg, #a7a3e4, #dd85fd);  */
     color: #333;
 }
@@ -152,7 +152,6 @@ form.active {
 }
 
 
-
 .box{
     display: flex;
     justify-content: center;
@@ -164,7 +163,17 @@ form.active {
 #like-pic{
     height: 50px;
     width: 50px;
+    border: none;
+    border-radius: 30px;
 }
+#like-pic:hover{
+    height: 50px;
+    width: 50px;
+    border: none;
+    border-radius: 30px;
+
+}
+
 #like-txt{
     height: 5em;
     width: 5em;
@@ -205,10 +214,19 @@ form.active {
     flex-direction: column;
     width: 300px;
     padding: 5px;
-    background-color: rgb(206, 206, 239);
+    /* background-color: rgb(206, 206, 239);
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
+    border-radius: 10px; */
     row-gap: 5px;
+    height: 350px;
+    /* width: 250px; */
+    padding: 5px;
+    background-color: #ffffff;
+    padding: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    border: 2px solid #f6d365;
+
 }
 
 .login-container h2 {
@@ -308,5 +326,54 @@ form.active {
 }
 
 #logout-btn{
+    background-color: #aa6f6f;
+    border-radius: 10px;
+    height: 30px;
+    width: 80px;
+    text-align: center;
+    
+    border: none;
+    font: 15px solid black;
 
+}
+#logout-btn:hover{
+    background-color: #bd5a78;
+    border-radius: 10px;
+    height: 30px;
+    width: 80px;
+    text-align: center;
+    border: none;
+    font: 20px solid black;
+
+}
+
+#like-box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 5px;
+    background-color: #ffffff;
+    padding: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    border: 2px solid #f665c3;
+
+}
+
+
+#user-box {
+    position: absolute; /* or fixed */
+    top: 10px; /* Adjust as needed */
+    left: 10px; /* Adjust as needed */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 5px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    border: 2px solid #cd65f6;
+    gap: 10px;
 }

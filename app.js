@@ -72,8 +72,9 @@ const addLike = (e) => {
         get(userLikesRef).then((snapshot) => {
             if (snapshot.exists()) {
                 score = snapshot.val().count + 1;
+                
             } else {
-                score = 1;
+                score = 0;
             }
             currentLikeSpan.textContent = score;
 
@@ -135,12 +136,12 @@ const onGoogleLogin = () => {
 
         get(userLikesRef).then((snapshot) => {
             if (snapshot.exists()) {
-                score = snapshot.val().count + 1;
+                console.log(snapshot.val().count);
+               score= snapshot.val().count;
             } else {
-                score = 1;
+                score = 0;
             }
             currentLikeSpan.textContent = score;
-    
 
             set(userLikesRef, { count: score });
 
@@ -257,12 +258,12 @@ document.querySelector('#login').addEventListener('click', (e) => {
             imgbox.style.display = 'none';
             get(userLikesRef).then((snapshot) => {
                 if (snapshot.exists()) {
-                    score = snapshot.val().count + 1;
+
+                    score = snapshot.val().count ;
                 } else {
-                    score = 1;
+                    score = 0;
                 }
                 currentLikeSpan.textContent = score;
-        
     
                 set(userLikesRef, { count: score });
     
@@ -292,3 +293,10 @@ logoutBtn.addEventListener('click', () => {
         console.error('Sign out error', error);
     });
 });
+
+likePic.addEventListener('mouseover',(e)=>{
+    likePic.src = './images/like2.png';
+})
+likePic.addEventListener('mouseout',(e)=>{
+    likePic.src = './images/like.jpeg';
+})
